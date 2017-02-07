@@ -8,8 +8,7 @@ Sourcing with Apache Kafka streams.
 ### 1. Create an event class with custom validation code:
 
 ```javascript
-const config = { brokers: 'mykafkahost.example.org:9092,localhost:9092' };
-const Event = require('kafka-event')(config);
+const Event = require('kafka-event');
 
 class AddTodoEvent extends Event {
 
@@ -100,26 +99,28 @@ We were not able to send this to Apache Kafka.
 
 From here, it is impossible to go to any other state.
 
-## Kafka configuration details
+## Kafka configuration
 
-* `brokers` - Comma delimited list of initial brokers list.
+### Environment variables
+
+* `KAFKAEVENT_BROKERS` - Comma delimited list of initial brokers list.
    Default is `127.0.0.1:9092`.
-* `acks` - How many acks to wait for, until an event is successfully sent.
-  `0` or negative number means waiting until all in sync Kafka replicas has
-  acked. We do not support not waiting (because that is supid). Note that we
-  will never wait for more acks than there are in-sync replicas.
+* `KAFKAEVENT_ACKS` - How many acks to wait for, until an event is successfully 
+  sent. `0` or negative number means waiting until all in sync Kafka replicas
+  has acked. We do not support not waiting (because that is supid). Note that
+  we will never wait for more acks than there are in-sync replicas.
   Default: `2`
-* `timeout` - Timeout in milliseconds for produce request.
-* `clientId` - The client identifier. Default is `kafkaevent`.
-* `reconnDelay` - progressive delay between reconnection attempts in
-  milliseconds. Default is 1000.
-* `reconnMaxDelay` - max delay between reconnection attempts, in milliseconds.
-  Default is 5000.
-* `partitioner` - Class instance used to determine topic partition for message.
-* `retries` - Max number of attempts to send the message. Default is 5.
-* `retriesDelay` - The delay is progressive and incrememented at each attempt.
-  Default is 1000.
-* `retriesMaxDelay` - Maximum delay value. Default is `5000`.
+* `KAFKAEVENT_TIMEOUT` - Timeout in milliseconds for produce request.
+* `KAFKAEVENT_CLIENTID` - The client identifier. Default is `kafkaevent`.
+* `KAFKAEVENT_RECONN_DELAY` - progressive delay between reconnection attempts
+  in milliseconds. Default is 1000.
+* `KAFKAEVENT_RECONN_MAX_DELAY` - max delay between reconnection attempts, in
+  milliseconds. Default is 5000.
+* `KAFKAEVENT_RETRIES` - Max number of attempts to send the message.
+  Default is `5`.
+* `KAFKAEVENT_RETRIES_DELAY` - The delay is progressive and incrememented at
+  each attempt. Default is 1000.
+* `KAFKAEVENT_RETRIES_MAX_DELAY` - Maximum delay value. Default is `5000`.
 
 ## Promises
 
