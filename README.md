@@ -13,10 +13,12 @@ const Event = require('kafka-event')(config);
 
 class AddTodoEvent extends Event {
 
-validate() {
-	if (typeof this.properties.description !== 'string') {
-		throw new Error('Description must be a string.');
+	validate() {
+		if (typeof this.properties.description !== 'string') {
+			throw new Error('Description must be a string.');
+		}
 	}
+
 }
 ```
 
