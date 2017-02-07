@@ -8,7 +8,7 @@ Sourcing with Apache Kafka streams.
 ### 1. Create an event class with custom validation code:
 
 ```javascript
-const config = { brokers: [ 'mykafkahost.example.org:9092' ] };
+const config = { brokers: 'mykafkahost.example.org:9092,localhost:9092' };
 const Event = require('kafka-event')(config);
 
 class AddTodoEvent extends Event {
