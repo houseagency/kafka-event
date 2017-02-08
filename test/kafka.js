@@ -34,6 +34,7 @@ describe('Unit:', () => {
 
 			after(() => {
 				kafka.producer = kafka._old_producer;
+				delete kafka._old_producer;
 			});
 
 		});
