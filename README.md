@@ -1,5 +1,7 @@
 # kafka-event
 
+[![Build Status](https://semaphoreci.com/api/v1/houseagency/kafka-event/branches/master/shields_badge.svg)](https://semaphoreci.com/houseagency/kafka-event)
+
 This is a JavaScipt (nodejs) module for the events when doing CQRS and Event
 Sourcing with Apache Kafka streams.
 
