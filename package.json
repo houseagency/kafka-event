@@ -1,0 +1,30 @@
+{
+  "name": "kafka-event",
+  "version": "1.0.0",
+  "description": "Event class for CQRS and event sourcing over Apache Kafka.",
+  "main": "index.js",
+  "scripts": {
+    "test": "node_modules/.bin/nyc --reporter=html --reporter=text node_modules/.bin/mocha -g ^Unit: test/**/*.js",
+    "integrationtests": "test/integration/run.sh"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/houseagency/kafka-event.git"
+  },
+  "author": "Alfred Godoy <alfred.godoy@houseagency.se>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/houseagency/kafka-event/issues"
+  },
+  "homepage": "https://github.com/houseagency/kafka-event#readme",
+  "dependencies": {
+    "no-kafka": "3.1.0",
+    "uuid": "3.0.1"
+  },
+  "devDependencies": {
+    "chai": "3.5.0",
+    "mocha": "3.2.0",
+    "nyc": "10.1.2",
+    "testdouble": "1.11.0"
+  }
+}

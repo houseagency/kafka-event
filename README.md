@@ -35,9 +35,12 @@ However, there are some more things you might want to look in to...
 
 ## Functions/metods
 
-### .send()
+### .send([<optional topic>])
 
 This function will send the event to Apache Kafka.
+
+You can specify a topic, or the `KAFKAEVENT_TOPIC` environment variable will
+be used. If `KAFKAEVENT_TOPIC` is not set, the default topic is `events`.
 
 The `.send()` function has a Promise interface, which will resolve when the
 event's state goes to `sent`, or reject when the state goes to `failed`.
@@ -103,6 +106,9 @@ From here, it is impossible to go to any other state.
 
 ### Environment variables
 
+* `KAFKAEVENT_TOPIC` - To what topic we are sending events.
+  Default is `events`. This can be overridden for individual events by the
+  options object passed to the `.send()` function.
 * `KAFKAEVENT_BROKERS` - Comma delimited list of initial brokers list.
    Default is `127.0.0.1:9092`.
 * `KAFKAEVENT_ACKS` - How many acks to wait for, until an event is successfully 
@@ -111,7 +117,9 @@ From here, it is impossible to go to any other state.
   we will never wait for more acks than there are in-sync replicas.
   Default: `2`
 * `KAFKAEVENT_TIMEOUT` - Timeout in milliseconds for produce request.
-* `KAFKAEVENT_CLIENTID` - The client identifier. Default is `kafkaevent`.
+  Default is 10000.
+* `KAFKAEVENT_CLIENTID` - The client identifier.
+  Default is a random string generated for each node process.
 * `KAFKAEVENT_RECONN_DELAY` - progressive delay between reconnection attempts
   in milliseconds. Default is 1000.
 * `KAFKAEVENT_RECONN_MAX_DELAY` - max delay between reconnection attempts, in
@@ -134,3 +142,8 @@ addTodo.send()
 })
 ```
 
+## Considerations
+
+* When doing Event Sourcing, order is important! That is why we will only send
+  your event to Kafka partition 0. So, you should only create one partition
+  in Kafka, since we will only use that one.
