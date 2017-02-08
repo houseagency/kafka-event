@@ -106,10 +106,11 @@ From here, it is impossible to go to any other state.
 
 ### Environment variables
 
+* `KAFKA_URL` - Comma delimited list of initial brokers list.
+* `KAFKA_CLIENT_CERT` and `KAFKA_CLIENT_CERT_KEY` for SSL cert and key.
 * `KAFKAEVENT_TOPIC` - To what topic we are sending events.
   Default is `events`. This can be overridden for individual events by the
   options object passed to the `.send()` function.
-* `KAFKAEVENT_BROKERS` - Comma delimited list of initial brokers list.
    Default is `127.0.0.1:9092`.
 * `KAFKAEVENT_ACKS` - How many acks to wait for, until an event is successfully 
   sent. `0` or negative number means waiting until all in sync Kafka replicas

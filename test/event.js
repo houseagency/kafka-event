@@ -1,9 +1,10 @@
-const Event = require('../src/event');
 const expect = require('chai').expect;
-const td = require('testdouble');
 const kafka = require('../src/kafka');
+const Event = require('../src/event');
 
 describe('Unit:', () => {
+
+	const td = require('testdouble');
 
 	before(() => {
 		kafka._old_producer = kafka.producer;
@@ -73,3 +74,24 @@ describe('Unit:', () => {
 	});
 
 });
+
+describe('Integration:', () => {
+
+	describe('Event class', () => {
+
+		it('sends events to Kafka', function() {
+
+			this.timeout(10000);
+
+			let event = new Event({ test: 'first'});
+			return event.send()
+			.then(() => {
+				expect('whut').to.equal('whut');
+			});
+
+		});
+
+	});
+
+});
+

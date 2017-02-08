@@ -1,0 +1,23 @@
+version: '2.1'
+
+services:
+  zookeeper:
+    image: wurstmeister/zookeeper
+  kafka:
+    image: wurstmeister/kafka
+    links:
+      - zookeeper
+    environment:
+      - KAFKA_ADVERTISED_HOST_NAME=kafka
+      - KAFKA_ADVERTISED_PORT=9092
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - KAFKA_CREATE_TOPICS=events:1:1,eventresponses:1:1:delete
+      - KAFKA_AUTO_CREATE_TOPICS_ENABLE=false
+  testrunner:
+    build: ../..
+    links:
+      - kafka
+      - zookeeper
+    environment:
+      - KAFKA_URL=kafka:9092
+    command: node_modules/.bin/mocha -g ^Integration test/**/*.js

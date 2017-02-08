@@ -5,11 +5,10 @@ function randomClientId() {
 
 const config = {
 	acks: parseInt(process.env.KAFKAEVENT_ACKS) || 2,
-	brokers: process.env.KAFKAEVENT_BROKERS || '127.0.0.1:9092',
 	clientId: process.env.KAFKAEVENT_CLIENTID || randomClientId(),
 	reconnDelay: parseInt(process.env.KAFKAEVENT_RECONN_DELAY) || 1000,
 	reconnMaxDelay: parseInt(process.env.KAFKAEVENT_RECONN_MAX_DELAY) || 5000,
-	retries: parseInt(process.env.KAFKAEVENT_RETRIES) || 5,
+	retries: parseInt(process.env.KAFKAEVENT_RETRIES) || 50,
 	retriesDelay: parseInt(process.env.KAFKAEVENT_RETRIES_DELAY) || 1000,
 	retriesMaxDelay: parseInt(process.env.KAFKAEVENT_RETRIES_MAX_DELAY) || 5000,
 	timeout: parseInt(process.env.KAFKAEVENT_TIMEOUT) || 10000,
