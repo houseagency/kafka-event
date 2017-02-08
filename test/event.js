@@ -81,7 +81,10 @@ describe('Integration:', () => {
 
 		it('sends events to Kafka', function() {
 
-			this.timeout(10000);
+			// This is the first interaction with Kafka during the test run,
+			// so it might take a while until Kafka is up and running.
+			// Hence, this looong timeout.
+			this.timeout(20000);
 
 			let event = new Event({ test: 'first'});
 			return event.send()
