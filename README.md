@@ -33,6 +33,23 @@ addTodo.send();
 
 However, there are some more things you might want to look in to...
 
+## Tests
+
+### Unit tests
+
+Run the unit tests:
+
+    npm test
+
+### Integration tests
+
+Requires docker-compose version 1.10.0 or later, and docker (only tested with
+docker version 1.12.1).
+
+Run the interation tests:
+
+    npm run integrationtests
+
 ## Functions/metods
 
 ### .send([<optional topic>])
